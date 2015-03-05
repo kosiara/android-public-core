@@ -1,0 +1,19 @@
+body {
+    font-size: 1.0em;
+    color: rgb(0,0,0);
+    text-align: justify;
+}
+
+@media screen and (-webkit-device-pixel-ratio: 1.5) {
+    /* CSS for high-density screens */
+    body {
+        font-size: 1.05em;
+    }
+}
+
+@media screen and (-webkit-device-pixel-ratio: 2.0) {
+    /* CSS for extra high-density screens */
+    body {
+        font-size: 1.1em;
+    }
+}
