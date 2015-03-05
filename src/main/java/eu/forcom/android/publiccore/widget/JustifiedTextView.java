@@ -9,14 +9,27 @@ import android.view.View;
 import android.webkit.WebView;
 import eu.forcom.android.publiccore.R;
 
+/**
+ * <p>This Android control serves as standard TextView with the ability to justify text inside of it. </p>
+ *
+ * <p>Tip: <br/> method setText() is used to set custom string value to control's text <br/>
+ * android:text="" takes only 'R.string.name_of_string_res' string reference. It won't accept strings.</p>
+ *
+ * <p>Sample usage: <br/><br/>
+ *
+ * &#60;eu.forcom.android.publiccore.widget.JustifiedTextView <br/>
+ * &#160;&#160;      android:layout_width="match_parent" <br/>
+ * &#160;&#160;      android:layout_height="wrap_content" &#47;> <br/>
+ *
+ *  <br/>
+ *  justifiedTextView.setText("Sample text body"); </p>
+ *
+ *
+ * @see android.R
+ */
 public class JustifiedTextView extends WebView {
-    public JustifiedTextView(final Context context) {
-        this(context, null, 0);
-    }
 
-    public JustifiedTextView(final Context context, final AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
+    public JustifiedTextView(final Context context, final AttributeSet attrs) { this(context, attrs, 0, true); }
 
     public JustifiedTextView(final Context context, final AttributeSet attrs, final int defStyle, boolean isTransparent) {
         super(context, attrs, defStyle);
@@ -44,10 +57,9 @@ public class JustifiedTextView extends WebView {
             setTransparentBackground();
     }
 
-    public JustifiedTextView(final Context context, final AttributeSet attrs, final int defStyle) {
-        this(context, attrs, defStyle, true);
-    }
-
+    /**
+     * Sets background to transparent. Default is white.
+     */
     public void setTransparentBackground() {
         try {
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -58,6 +70,10 @@ public class JustifiedTextView extends WebView {
         setBackgroundResource(0);
     }
 
+    /**
+     * Sets/replaces text value of the control.
+     * @param text string value to set
+     */
     public void setText(String text) {
         text = text.replace("\n", "<br />");
         loadDataWithBaseURL("file:///android_asset/",
