@@ -5,13 +5,27 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
+/**
+ * An ArrayAdapter for Android's ListView that can be decorated with an observer.
+ * Each dataset change notifies the observer via onAdapterDataSetChanged() method.
+ *
+ * @param <T>
+ */
 public class ObservableArrayAdapter<T> extends ArrayAdapter<T>{
 
-    public static interface Observer {
-        void onAdapterDataChanged();
+    private Observer mObserver;
+
+    /**
+     * Set an observer to get dataset notifications.
+     * @param observer
+     */
+    public void setObserver(Observer observer) {
+        this.mObserver = observer;
     }
 
-    private Observer mObserver;
+    public static interface Observer {
+        void onAdapterDataSetChanged();
+    }
 
     public ObservableArrayAdapter(Context context, int resource) {
         super(context, resource);
@@ -42,10 +56,6 @@ public class ObservableArrayAdapter<T> extends ArrayAdapter<T>{
         super.notifyDataSetChanged();
 
         if (mObserver != null)
-            mObserver.onAdapterDataChanged();
-    }
-
-    public void setListObserver(Observer observer) {
-        this.mObserver = observer;
+            mObserver.onAdapterDataSetChanged();
     }
 }
