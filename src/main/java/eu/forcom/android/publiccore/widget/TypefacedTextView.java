@@ -8,6 +8,16 @@ import android.widget.TextView;
 
 import eu.forcom.android.publiccore.R;
 
+/**
+ * <p>Extension of Android's TextView with the ability to set custom typeface.
+ * Use the attribute
+ *
+ * <br/><br/> custom:typeface="Roboto-Regular.ttf" <br/><br/>
+ *
+ * to set custom typeface from xml view.</p>
+ *
+ * @see android.widget.TextView
+ */
 public class TypefacedTextView extends TextView {
 
     public TypefacedTextView(Context context, AttributeSet attrs) {
@@ -20,6 +30,11 @@ public class TypefacedTextView extends TextView {
         setTypeface(context, attrs);
     }
 
+    /**
+     * Custom typeface is automatically set in the constructor.
+     * @param context
+     * @param attrs
+     */
     protected void setTypeface(Context context, AttributeSet attrs) {
         //If in the layout editor. Skip.
         if (isInEditMode())

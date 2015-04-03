@@ -10,7 +10,7 @@ import android.webkit.WebView;
 import eu.forcom.android.publiccore.R;
 
 /**
- * <p>This Android control serves as standard TextView with the ability to justify text inside of it. </p>
+ * <p>This Android control serves as a standard TextView with the ability to justify text inside of it. </p>
  *
  * <p>Tip: <br/> method setText() is used to set custom string value to control's text <br/>
  * android:text="" takes only 'R.string.name_of_string_res' string reference. It won't accept strings.</p>
