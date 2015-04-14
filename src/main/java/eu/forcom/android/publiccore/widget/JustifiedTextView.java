@@ -29,6 +29,8 @@ import eu.forcom.android.publiccore.R;
  */
 public class JustifiedTextView extends WebView {
 
+    private int mTextColor;
+
     public JustifiedTextView(final Context context, final AttributeSet attrs) { this(context, attrs, 0, true); }
 
     public JustifiedTextView(final Context context, final AttributeSet attrs, final int defStyle, boolean isTransparent) {
@@ -39,15 +41,12 @@ public class JustifiedTextView extends WebView {
             final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.JustifiedTextView, defStyle, 0);
             if (ta != null) {
                 ta.getValue(R.styleable.JustifiedTextView_text, tv);
+                mTextColor = ta.getColor(R.styleable.JustifiedTextView_textColor, 0);
 
                 if (tv.resourceId > 0) {
                     final String text = context.getString(tv.resourceId).replace("\n", "<br />");
-                    loadDataWithBaseURL("file:///android_asset/",
-                            "<html><head>" +
-                                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"justified_textview.css\" />" +
-                                    "</head><body>" + text + "</body></html>",
 
-                            "text/html", "UTF8", null);
+                    reloadHtmlData(text);
                     setTransparentBackground();
                 }
             }
@@ -76,10 +75,14 @@ public class JustifiedTextView extends WebView {
      */
     public void setText(String text) {
         text = text.replace("\n", "<br />");
+        reloadHtmlData(text);
+    }
+
+    private void reloadHtmlData(String text) {
         loadDataWithBaseURL("file:///android_asset/",
                 "<html><head>" +
                         "<link rel=\"stylesheet\" type=\"text/css\" href=\"justified_textview.css\" />" +
-                        "</head><body>" + text + "</body></html>",
+                        "</head><body style=\"color: #" + Integer.toHexString(mTextColor).substring(2) + "\">" + text + "</body></html>",
 
                 "text/html", "UTF8", null);
     }

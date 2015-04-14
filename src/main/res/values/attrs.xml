@@ -3,6 +3,7 @@
 
     <declare-styleable name="JustifiedTextView">
         <attr name="text" format="reference" />
+        <attr name="textColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="TypefacedTextView">
