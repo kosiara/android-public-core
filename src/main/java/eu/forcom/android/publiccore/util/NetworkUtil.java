@@ -1,5 +1,7 @@
 package eu.forcom.android.publiccore.util;
 
+import android.net.Uri;
+
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -31,5 +33,14 @@ public class NetworkUtil {
         }
 
         return null;
+    }
+
+    /**
+     * Gets the host from given url
+     */
+    public static String getHostFromUrl(String url) {
+        Uri uri = Uri.parse(url);
+
+        return uri.getHost();
     }
 }
