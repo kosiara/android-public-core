@@ -18,6 +18,9 @@ public class ActivityUtil {
             return;
 
         for (Fragment fragment : fragments) {
+            if (fragment == null)
+                continue;
+
             if (fragment instanceof DialogFragment) {
                 DialogFragment dialogFragment = (DialogFragment) fragment;
                 dialogFragment.dismissAllowingStateLoss();
